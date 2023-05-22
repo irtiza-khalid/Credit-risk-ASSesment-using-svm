@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Credit Risk Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+        }
+        .form-group {
+            margin-bottom: 10px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin-top: 20px;
+            font-size: 16px;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+        .result {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Credit Risk Prediction</h1>
+        <form action="{{ url_for('predict') }}" method="post">
+            <div class="form-group">
+                <label for="person_age">Age:</label>
+                <input type="text" id="person_age" name="person_age" required>
+            </div>
+            <div class="form-group">
+                <label for="person_income">Income:</label>
+                <input type="text" id="person_income" name="person_income" required>
+            </div>
+            <div class="form-group">
+                <label for="person_emp_length">Employment Length:</label>
+                <input type="text" id="person_emp_length" name="person_emp_length" required>
+            </div>
+            <div class="form-group">
+                <label for="loan_amnt">Loan Amount:</label>
+                <input type="text" id="loan_amnt" name="loan_amnt" required>
+            </div>
+            <div class="form-group">
+                <label for="loan_int_rate">Loan Interest Rate:</label>
+                <input type="text" id="loan_int_rate" name="loan_int_rate" required>
+            </div>
+            <div class="form-group">
+                <label for="loan_percent_income">Loan Percent of Income:</label>
+                <input type="text" id="loan_percent_income" name="loan_percent_income" required>
+            </div>
+            <div class="form-group">
+                <label for="cb_person_cred_hist_length">Credit History Length:</label>
+                <input type="text" id="cb_person_cred_hist_length" name="cb_person_cred_hist_length" required>
+            </div>
+            <button type="submit" class="btn">Predict</button>
+        </form>
+        {% if prediction_result is defined %}
+        <div class="result">
+       
+            <p>Percentage of Credit Risk: {{ percentage_risk }}%</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
